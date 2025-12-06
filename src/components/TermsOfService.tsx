@@ -1,26 +1,23 @@
 /**
  * @file TermsOfService.tsx
- * @description This component renders a section on the homepage that provides a brief overview of the terms of service.
- * It highlights key terms features and includes a call-to-action to read the full terms.
- * The component is animated with Framer Motion for a dynamic and engaging user experience.
+ * @description Enterprise-level Terms of Service section with professional design and proper empty states
  */
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight, FileText, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useTermsOfService } from "@/hooks/useTermsOfService";
 import { Skeleton } from "@/components/ui/skeleton";
+import SectionContainer from "@/components/home/SectionContainer";
+import SectionHeader from "@/components/home/SectionHeader";
+import EmptyState from "@/components/home/EmptyState";
 
-/**
- * @component TermsOfService
- * @description The main component for the terms of service section.
- */
 const TermsOfService = () => {
   const { t, language } = useTranslation();
   const { data: termsData, isLoading } = useTermsOfService();
-  
+
   const getText = (key: string) => {
     const texts: Record<string, Record<string, string>> = {
       continueReading: {
@@ -37,6 +34,16 @@ const TermsOfService = () => {
         en: "Read Full Terms",
         fr: "Lire les conditions complètes",
         ar: "اقرأ الشروط الكاملة"
+      },
+      emptyTitle: {
+        en: "Terms of Service",
+        fr: "Conditions d'utilisation",
+        ar: "شروط الخدمة"
+      },
+      emptyDescription: {
+        en: "Our terms of service outline the rules and guidelines for using our platform. Full document coming soon.",
+        fr: "Nos conditions d'utilisation décrivent les règles et directives pour l'utilisation de notre plateforme. Document complet à venir.",
+        ar: "تحدد شروط الخدمة الخاصة بنا القواعد والإرشادات لاستخدام منصتنا. الوثيقة الكاملة قريباً."
       }
     };
     return texts[key]?.[language] || texts[key]?.en || "";
@@ -60,105 +67,80 @@ const TermsOfService = () => {
   };
 
   const apiSections = getContentSections();
-  
-  // Map API sections to features - no fallback, empty if no data
   const termsFeatures = apiSections.map((section, index) => ({
     id: `section-${index}`,
     title: getTranslated(section.titre),
     description: getTranslated(section.paragraphe)
   }));
-  
+
   const truncateText = (text: string, maxLength: number = 120) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength).trim() + "...";
   };
 
-  // Loading state
+  const hasContent = termsFeatures.length > 0;
+
+  // Loading State
   if (isLoading) {
     return (
-      <section id="terms" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <Skeleton className="w-20 h-20 rounded-2xl mx-auto mb-6" />
-            <Skeleton className="h-12 w-64 mx-auto mb-6" />
-            <Skeleton className="h-6 w-96 mx-auto" />
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="p-6 rounded-2xl bg-card border border-border">
-                <Skeleton className="w-14 h-14 rounded-xl mb-4" />
-                <Skeleton className="h-6 w-32 mb-3" />
-                <Skeleton className="h-16 w-full" />
-              </div>
-            ))}
-          </div>
+      <SectionContainer id="terms" variant="default">
+        <SectionHeader
+          icon={FileText}
+          title={t("terms.title")}
+          subtitle={t("terms.subtitle")}
+        />
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="bg-card border border-border rounded-2xl p-6">
+              <Skeleton className="w-12 h-12 rounded-xl mb-4" />
+              <Skeleton className="h-6 w-32 mb-3" />
+              <Skeleton className="h-20 w-full" />
+            </div>
+          ))}
         </div>
-      </section>
+      </SectionContainer>
     );
   }
 
   return (
-    <section id="terms" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background">
-      {/* A subtle gradient background to enhance the visual appeal. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
-      
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Animated section header. */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          {/* Animated file icon. */}
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 mb-6 shadow-lg"
-          >
-            <FileText className="w-10 h-10 text-primary" />
-          </motion.div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            {t("terms.title")}
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            {t("terms.subtitle")}
-          </p>
-        </motion.div>
+    <SectionContainer id="terms" variant="default">
+      <SectionHeader
+        icon={FileText}
+        title={t("terms.title")}
+        subtitle={t("terms.subtitle")}
+      />
 
-        {/* Grid of terms feature cards - only show if we have data */}
-        {termsFeatures.length > 0 && (
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {termsFeatures.map((feature, index) => (
+      {/* Content Cards */}
+      {hasContent ? (
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {termsFeatures.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group h-full"
             >
-              {/* Animated card with hover effects. */}
-              <div className="relative p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl h-full flex flex-col">
-                {/* A subtle gradient overlay that appears on hover. */}
+              <div className="relative flex flex-col h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-card">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
                 
-                <div className="relative z-10 flex flex-col flex-1">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <FileText className="w-7 h-7 text-primary" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <FileText className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-1">
+                  
+                  <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4">
                     {truncateText(feature.description)}
                   </p>
+                  
                   <Link 
                     to={`/terms-of-service#${feature.id}`}
-                    className="text-primary text-sm font-medium hover:underline inline-flex items-center gap-1"
+                    className="inline-flex items-center gap-1 text-primary text-sm font-medium hover:underline"
                   >
                     {getText("continueReading")}
                     <ArrowRight className="w-3 h-3" />
@@ -167,29 +149,36 @@ const TermsOfService = () => {
               </div>
             </motion.div>
           ))}
-          </div>
-        )}
+        </div>
+      ) : (
+        <div className="bg-card border border-border rounded-2xl mb-12">
+          <EmptyState
+            icon={Scale}
+            title={getText("emptyTitle")}
+            description={getText("emptyDescription")}
+          />
+        </div>
+      )}
 
-        {/* Animated call-to-action section to read the full terms of service. */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center bg-card border border-border rounded-2xl p-8 max-w-3xl mx-auto"
-        >
-          <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            {getText("description")}
-          </p>
-          <Link to="/terms-of-service">
-            <Button variant="cta" size="lg" className="group">
-              {getText("readMore")}
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
-        </motion.div>
-      </div>
-    </section>
+      {/* CTA Box */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-card border border-border rounded-2xl p-8 max-w-3xl mx-auto text-center"
+      >
+        <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+          {getText("description")}
+        </p>
+        <Link to="/terms-of-service">
+          <Button variant="cta" size="lg" className="group">
+            {getText("readMore")}
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </Link>
+      </motion.div>
+    </SectionContainer>
   );
 };
 

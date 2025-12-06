@@ -1,52 +1,104 @@
 /**
  * @file Footer.tsx
- * @description Minimal footer with copyright and legal links.
+ * @description Enterprise-level footer with professional corporate design
  */
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Link } from "react-router-dom";
+import ToorriiLogo from "@/assets/toorrii-logo.png";
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+
+  const currentYear = new Date().getFullYear();
+
+  const getText = (key: string) => {
+    const texts: Record<string, Record<string, string>> = {
+      rights: {
+        en: "All rights reserved.",
+        fr: "Tous droits réservés.",
+        ar: "جميع الحقوق محفوظة."
+      },
+      madeWith: {
+        en: "Made with excellence in Algeria",
+        fr: "Créé avec excellence en Algérie",
+        ar: "صنع بتميز في الجزائر"
+      }
+    };
+    return texts[key]?.[language] || texts[key]?.en || "";
+  };
+
+  const footerLinks = [
+    { label: t("footer.privacyPolicy"), href: "/privacy-policy" },
+    { label: t("footer.termsOfService"), href: "/terms-of-service" },
+    { label: t("nav.contact") || "Contact", href: "/contact" },
+  ];
 
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="container mx-auto px-6 py-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-center"
-        >
+    <footer className="bg-card border-t border-border">
+      <div className="container mx-auto px-6">
+        {/* Main Footer Content */}
+        <div className="py-8">
           <motion.div
-            className="text-muted-foreground text-sm"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center justify-between gap-6"
           >
-            <span>© 2025 Toorrii. All rights reserved.</span>
+            {/* Logo & Copyright */}
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link to="/" className="h-10 flex-shrink-0">
+                <img 
+                  src={ToorriiLogo} 
+                  alt="Toorrii Logo" 
+                  className="h-full w-auto object-contain"
+                />
+              </Link>
+              <div className="h-px w-8 bg-border hidden sm:block" />
+              <div className="text-center sm:text-left">
+                <p className="text-sm text-muted-foreground">
+                  © {currentYear} Toorrii. {getText("rights")}
+                </p>
+              </div>
+            </div>
+
+            {/* Footer Links */}
+            <nav className="flex items-center gap-6">
+              {footerLinks.map((link, index) => (
+                <motion.div
+                  key={link.href}
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Link
+                    to={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
           </motion.div>
-          <div className="flex items-center space-x-6 mt-4 md:mt-0">
-            <motion.div whileHover={{ y: -2 }}>
-              <Link
-                to="/privacy-policy"
-                className="text-muted-foreground hover:text-primary text-sm transition-colors"
-              >
-                {t("footer.privacyPolicy")}
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ y: -2 }}>
-              <Link
-                to="/terms-of-service"
-                className="text-muted-foreground hover:text-primary text-sm transition-colors"
-              >
-                {t("footer.termsOfService")}
-              </Link>
-            </motion.div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="py-4 border-t border-border/50">
+          <div className="flex items-center justify-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-xs text-muted-foreground/70 flex items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+              {getText("madeWith")}
+            </motion.p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
