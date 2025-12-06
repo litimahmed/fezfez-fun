@@ -13,6 +13,7 @@ interface ThemeColors {
   foreground: string;
   cardForeground: string;
   popoverForeground: string;
+  muted: string;
   mutedForeground: string;
   accentForeground: string;
   border: string;
@@ -37,9 +38,10 @@ const colorThemes: Record<AccentColor, ThemeColors> = {
     foreground: "182 86% 14%",
     cardForeground: "182 86% 14%",
     popoverForeground: "182 86% 14%",
+    muted: "182 27% 85%",
     mutedForeground: "182 40% 30%",
     accentForeground: "182 86% 14%",
-    border: "155 27% 85%",
+    border: "182 27% 85%",
     sidebarForeground: "182 86% 14%",
     sidebarPrimary: "182 86% 14%",
     sidebarAccent: "182 60% 96%",
@@ -59,6 +61,7 @@ const colorThemes: Record<AccentColor, ThemeColors> = {
     foreground: "217 91% 20%",
     cardForeground: "217 91% 20%",
     popoverForeground: "217 91% 20%",
+    muted: "217 27% 90%",
     mutedForeground: "217 40% 40%",
     accentForeground: "217 91% 20%",
     border: "217 27% 88%",
@@ -81,6 +84,7 @@ const colorThemes: Record<AccentColor, ThemeColors> = {
     foreground: "142 71% 15%",
     cardForeground: "142 71% 15%",
     popoverForeground: "142 71% 15%",
+    muted: "142 27% 88%",
     mutedForeground: "142 40% 35%",
     accentForeground: "142 71% 15%",
     border: "142 27% 88%",
@@ -103,6 +107,7 @@ const colorThemes: Record<AccentColor, ThemeColors> = {
     foreground: "271 81% 20%",
     cardForeground: "271 81% 20%",
     popoverForeground: "271 81% 20%",
+    muted: "271 27% 90%",
     mutedForeground: "271 40% 40%",
     accentForeground: "271 81% 20%",
     border: "271 27% 88%",
@@ -125,6 +130,7 @@ const colorThemes: Record<AccentColor, ThemeColors> = {
     foreground: "25 95% 20%",
     cardForeground: "25 95% 20%",
     popoverForeground: "25 95% 20%",
+    muted: "25 27% 90%",
     mutedForeground: "25 50% 40%",
     accentForeground: "25 95% 20%",
     border: "25 30% 88%",
@@ -168,6 +174,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     root.style.setProperty("--foreground", theme.foreground);
     root.style.setProperty("--card-foreground", theme.cardForeground);
     root.style.setProperty("--popover-foreground", theme.popoverForeground);
+    root.style.setProperty("--muted", theme.muted);
     root.style.setProperty("--muted-foreground", theme.mutedForeground);
     root.style.setProperty("--accent-foreground", theme.accentForeground);
     root.style.setProperty("--border", theme.border);
