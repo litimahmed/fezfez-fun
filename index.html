@@ -1,41 +1,28 @@
-<!--
-  This is the main HTML file that serves as the entry point for the single-page application (SPA).
-  It sets up the basic document structure and provides a mount point for the React application.
--->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <!-- Specifies the character encoding for the document. UTF-8 is the standard. -->
-    <meta charset="UTF-8">
-    
-    <!-- 
-      Sets the viewport to ensure the page is responsive and scales correctly on different devices.
-      'width=device-width' makes the page width match the device's screen width.
-      'initial-scale=1.0' sets the initial zoom level when the page is first loaded.
-    -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- 
-      Sets the favicon for the website, which is the small icon displayed in the browser tab.
-      The path '/favicon.png' points to a file in the 'public' directory.
-    -->
-    <link rel="icon" href="/favicon.png" type="image/png">
-    
-    <!-- The title of the web page, displayed in the browser tab and search engine results. -->
-    <title>Toorrii - Smart Queue Management</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Averix - Digital Media Agency</title>
+    <meta name="description" content="Averix - Creative Digital Media Agency" />
+    <meta name="author" content="Averix" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Federo&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="Averix - Digital Media Agency" />
+    <meta property="og:description" content="Averix is a specialized digital boutique based in Oran, Algeria. We create digital excellence." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/averix_logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Averix - Digital Media Agency" />
+    <meta name="twitter:description" content="Averix is a specialized digital boutique based in Oran, Algeria. We create digital excellence." />
+    <meta name="twitter:image" content="/averix_logo.png" />
   </head>
+
   <body>
-    <!-- 
-      This is the root element where the React application will be mounted.
-      The 'createRoot' function in 'src/main.tsx' targets this element.
-    -->
     <div id="root"></div>
-    
-    <!-- 
-      This script tag loads and executes the main JavaScript file for the React application.
-      'type="module"' indicates that the script is an ES module, allowing for 'import' and 'export' statements.
-      'src="/src/main.tsx"' points to the main entry point of the application.
-    -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

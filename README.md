@@ -1,102 +1,73 @@
-<!-- 
-This README file serves as the main entry point for understanding the Toorrii project.
-It provides an overview, setup instructions, and details about the project's design and licensing.
--->
+# Welcome to your Lovable project
 
-# Home - Toorrii
+## Project info
 
-<!-- Main welcome message and a link to the live platform. -->
-Welcome to the **Toorrii** platform — a personal and carefully crafted project focused on delivering a professional, seamless experience.
+**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
-🔗 **Quick Access:** [Visit the live platform →](https://toorrii.ahmedlitim.com)
+## How can I edit this code?
 
----
+There are several ways of editing your application.
 
-## Overview
+**Use Lovable**
 
-<!-- A brief introduction to the project, highlighting its focus on quality and modern development practices. -->
-**Toorrii** is a personal project built with a focus on quality, UI consistency, and maintainability.  
-It combines modern frontend practices with a refined, brand-aligned design system.
+Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
 
----
+Changes made via Lovable will be committed automatically to this repo.
 
-## Prerequisites
+**Use your preferred IDE**
 
-<!-- Lists the necessary software required to run the project locally. -->
-Before running the project, make sure you have the following installed:
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-- **Node.js** (v14 or higher)
-- **npm** (v6 or higher)
-- **Git**
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
----
+Follow these steps:
 
-## Installation
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-<!-- Step-by-step instructions for cloning the repository and installing dependencies. -->
-1. **Clone the repository**
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-   ```bash
-   git clone https://gitlab.com/anis_amara/toorrii_equipe
-   cd home-toorrii
-   ```
+# Step 3: Install the necessary dependencies.
+npm i
 
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
----
-
-## Development Server
-
-<!-- Instructions for starting the local development server. -->
-Start the development environment with:
-
-```bash
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-The app will be available at:
-👉 `http://localhost:3000` _(or your configured port)_
+**Edit a file directly in GitHub**
 
----
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-## Build for Production
+**Use GitHub Codespaces**
 
-<!-- Command for creating an optimized production build of the application. -->
-To generate an optimized production build:
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-```bash
-npm run build
-```
+## What technologies are used for this project?
 
-This will create a ready-to-deploy build in the `dist` or `.next` directory depending on your framework setup.
+This project is built with:
 
----
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-## UI & Design
+## How can I deploy this project?
 
-<!-- Highlights the key aspects of the project's design system and visual language. -->
-The platform’s design language has been **professionally refined**:
+Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
-- Updated **color signature** for strong brand identity
-- Balanced **spacing, contrast, and typography**
-- Clean and modern **visual hierarchy**
-- Consistent **component alignment and interaction states**
+## Can I connect a custom domain to my Lovable project?
 
----
+Yes, you can!
 
-## License
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-<!-- A summary of the project's licensing terms, emphasizing its proprietary nature. -->
-This project is **personal and proprietary**.
-All rights reserved © 2025 Ahmed.
-Unauthorized use, copying, or distribution of this project or its components is strictly prohibited.
-For inquiries, please contact the author directly.
-
----
-
-<!-- A signature line to credit the author. -->
-**Made with passion and precision by Ahmed Litim.**
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)

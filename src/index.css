@@ -1,260 +1,272 @@
-/**
- * @file index.css
- * @description This file serves as the global stylesheet and design system for the application.
- * It defines CSS custom properties (variables) for colors, gradients, shadows, and other design tokens.
- * These variables are used throughout the application to ensure a consistent and maintainable design.
- *
- * @author Toorrii Design Team
- */
-
-/* Import Tailwind CSS base styles, components, and utilities. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*
- * ===========================================
- * DESIGN SYSTEM: CSS CUSTOM PROPERTIES
- * All colors are defined in HSL format for easy manipulation and consistency.
- * ===========================================
- */
+/* Fonts loaded from index.html */
 
 @layer base {
-  /*
-   * Light mode color variables.
-   * These variables define the default color scheme for the application.
-   */
   :root {
-    /* Base colors for the main surface and text */
-    --background: 0 0% 99%;      /* Main page background */
-    --foreground: 182 86% 14%;   /* Main text color */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
 
-    /* Card colors for elevated UI elements */
-    --card: 0 0% 99%;
-    --card-foreground: 182 86% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
 
-    /* Popover colors for floating UI elements */
-    --popover: 0 0% 99%;
-    --popover-foreground: 182 86% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
 
-    /* Primary brand colors */
-    --primary: 182 86% 14%;           /* Main brand color (Teal) */
-    --primary-foreground: 0 0% 99%;   /* Text on primary surfaces */
-    --primary-light: 176 28% 35%;     /* Lighter variant for gradients */
-    --primary-dark: 182 90% 10%;      /* Darker variant for emphasis */
+    --primary: 0 0% 6%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary colors for supporting brand elements */
-    --secondary: 176 28% 35%;
-    --secondary-foreground: 0 0% 99%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 6%;
 
-    /* Muted colors for subtle backgrounds and secondary text */
-    --muted: 155 27% 85%;
-    --muted-foreground: 182 40% 30%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent colors for highlights and interactive elements */
-    --accent: 174 19% 57%;
-    --accent-foreground: 182 86% 14%;
+    /* Main accent color: #B6EF00 */
+    --accent: 72 100% 47%;
+    --accent-foreground: 0 0% 6%;
 
-    /* Destructive colors for error states and dangerous actions */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 99%;
+    --destructive-foreground: 0 0% 100%;
 
-    /* Success colors for positive feedback */
-    --success: 174 19% 57%;
-    --success-foreground: 182 86% 14%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 72 100% 47%;
 
-    /* UI element colors */
-    --border: 155 27% 85%;    /* Border color for inputs and cards */
-    --input: 155 20% 90%;     /* Input background color */
-    --ring: 182 86% 14%;      /* Focus ring color */
-
-    /* Custom brand gradients for backgrounds and visual interest */
-    --gradient-primary: linear-gradient(135deg, hsl(182, 86%, 14%), hsl(182, 90%, 10%));
-    --gradient-hero: linear-gradient(135deg, hsl(176, 28%, 35%) 0%, hsl(182, 86%, 14%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 99%) 0%, hsl(155, 27%, 90%) 100%);
-    
-    /* Custom shadows for depth and elevation */
-    --shadow-elegant: 0 10px 40px -10px hsl(182 86% 14% / 0.20);  /* Subtle elevation */
-    --shadow-glow: 0 0 60px hsl(174 19% 57% / 0.20);              /* Glow effect */
-    --shadow-card: 0 4px 20px hsl(182 86% 14% / 0.10);            /* Card elevation */
-    --shadow-header: 0 4px 30px -4px hsl(182 86% 14% / 0.12), 0 0 0 1px hsl(182 86% 14% / 0.05);
-    --shadow-sidebar: 4px 0 30px -4px hsl(182 86% 14% / 0.10), 0 0 0 1px hsl(182 86% 14% / 0.05);
-
-    /* Consistent border radius for rounded corners */
     --radius: 0.5rem;
 
-    /* Sidebar-specific color variables - Enhanced for professional look */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 182 86% 14%;
-    --sidebar-primary: 182 86% 14%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 182 60% 96%;
-    --sidebar-accent-foreground: 182 86% 14%;
-    --sidebar-border: 182 20% 92%;
-    --sidebar-ring: 182 86% 14%;
+    /* Custom tokens */
+    --dark: 0 0% 6%;
+    --dark-secondary: 0 0% 12%;
+    --light: 0 0% 100%;
+    --lime: 72 100% 47%;
     
-    /* Header-specific color variables */
-    --header-background: 0 0% 100%;
-    --header-border: 182 20% 92%;
+    /* Text colors */
+    --text-dark: #101010;
+    --text-muted: #727272;
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 72 100% 47%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 72 100% 47%;
   }
 }
 
-/*
- * ===========================================
- * BASE STYLES
- * Global styles applied to all elements.
- * ===========================================
- */
-
 @layer base {
-  /* Apply a default border color to all elements. */
   * {
     @apply border-border;
   }
 
-  /* Set the base background and text color for the entire application. */
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body antialiased;
   }
 
-  /*
-   * ===========================================
-   * CUSTOM SCROLLBAR STYLES
-   * Provides a consistent, branded scrollbar for WebKit and Firefox browsers.
-   * ===========================================
-   */
-  
-  /* Modern minimal scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
-  
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-    border-radius: 4px;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
-    border-radius: 4px;
-    transition: background 0.2s ease;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary-dark));
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
   }
 
-  /* Styles for Firefox */
-  .custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--primary)) hsl(var(--background));
+  .container-custom {
+    @apply max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20;
   }
 
-  /*
-   * ===========================================
-   * SIDEBAR SCROLLBAR - Modern & Professional
-   * Ultra-slim, auto-hiding scrollbar with smooth transitions
-   * ===========================================
-   */
-  
-  /* Sidebar scrollbar for WebKit browsers */
-  .sidebar-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    transition: width 0.2s ease;
-  }
-  
-  .sidebar-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-    margin: 4px 0;
-  }
-  
-  .sidebar-scrollbar::-webkit-scrollbar-thumb {
-    background: hsl(var(--sidebar-border));
-    border-radius: 100px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .sidebar-scrollbar:hover::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.3);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-  
-  .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.5);
-    border: 1px solid transparent;
-    background-clip: padding-box;
-  }
-  
-  .sidebar-scrollbar::-webkit-scrollbar-thumb:active {
-    background: hsl(var(--primary) / 0.6);
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-accent/80;
   }
 
-  /* Sidebar scrollbar for Firefox */
-  .sidebar-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--sidebar-border)) transparent;
-    transition: scrollbar-color 0.2s ease;
-  }
-  
-  .sidebar-scrollbar:hover {
-    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
   }
 
-  /* Auto-hide scrollbar variant - appears only on hover/scroll */
-  .sidebar-scrollbar-auto::-webkit-scrollbar {
-    width: 4px;
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
     opacity: 0;
-    transition: all 0.3s ease;
-  }
-  
-  .sidebar-scrollbar-auto::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 100px;
-    transition: background 0.3s ease;
-  }
-  
-  .sidebar-scrollbar-auto:hover::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .sidebar-scrollbar-auto:hover::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.25);
-  }
-  
-  .sidebar-scrollbar-auto::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.4);
   }
 
-  /*
-   * ===========================================
-   * INFINITE SCROLL ANIMATION
-   * Used for creating a seamless, looping carousel of partner logos.
-   * ===========================================
-   */
-  
-  /* Keyframes for the infinite horizontal scroll animation */
-  @keyframes scroll-infinite {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      /* The animation moves the content by -50% to create a seamless loop,
-         assuming the content is duplicated. */
-      transform: translate3d(-50%, 0, 0);
-    }
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
   }
 
-  /* Applies the infinite scroll animation to elements with this class. */
-  .animate-scroll-infinite {
-    animation: scroll-infinite 25s linear infinite;
-    will-change: transform;  /* Performance optimization hint for the browser */
+  .animate-slide-left {
+    animation: slideLeft 0.6s ease-out forwards;
+    opacity: 0;
   }
 
-  /* Pauses the animation on hover for a better user experience. */
-  .animate-scroll-infinite:hover {
-    animation-play-state: paused;
+  .animate-slide-right {
+    animation: slideRight 0.6s ease-out forwards;
+    opacity: 0;
   }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+
+  /* Section subheader style: 17px fedora #101010 */
+  .section-subheader {
+    @apply text-[17px] font-display tracking-[0.3em] uppercase;
+    color: #101010;
+  }
+
+  /* Main header style: 45px fedora #101010 */
+  .section-main-header {
+    @apply text-[45px] font-display leading-[1.15];
+    color: #101010;
+  }
+
+  /* Paragraph style: 17px barlow #727272 */
+  .section-paragraph {
+    @apply text-[17px] font-body leading-relaxed;
+    color: #727272;
+  }
+
+  /* Button style */
+  .btn-primary {
+    @apply text-[15px] font-display rounded-full transition-all duration-300;
+    padding: 12px 36px;
+    background-color: #B6EF00;
+    color: #101010;
+  }
+
+  .btn-primary:hover {
+    background-color: #101010;
+    color: #ffffff;
+  }
+
+  /* Masked card corner */
+  .masked-corner-br {
+    position: relative;
+    overflow: visible;
+  }
+
+  .masked-corner-br::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: hsl(var(--background));
+    border-radius: 60px 0 0 0;
+  }
+
+  .masked-corner-bl {
+    position: relative;
+    overflow: visible;
+  }
+
+  .masked-corner-bl::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: hsl(var(--background));
+    border-radius: 0 80px 0 0;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }

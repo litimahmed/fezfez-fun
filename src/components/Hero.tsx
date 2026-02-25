@@ -1,183 +1,103 @@
-/**
- * @file Hero.tsx
- * @description Enterprise-level hero section with professional corporate design
- */
+import { ChevronDown } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslation } from "react-i18next";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
-import { useTranslation } from "@/contexts/TranslationContext";
-import heroImage from "@/assets/hero-queue-management.png";
+export const Hero = () => {
+    const { ref, isVisible } = useScrollAnimation();
+    const { t } = useTranslation();
 
-const Hero = () => {
-  const { t, isRTL } = useTranslation();
+    const scrollToAbout = () => {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
-  const features = [
-    { text: t("hero.feature1") || "Smart Queue Management" },
-    { text: t("hero.feature2") || "Real-time Analytics" },
-    { text: t("hero.feature3") || "Multi-location Support" },
-  ];
+    const scrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
-  return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-      
-      {/* Decorative Elements */}
-      <motion.div
-        className="absolute top-40 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Content */}
-          <div className={`text-center lg:text-${isRTL ? 'right' : 'left'}`}>
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6"
-            >
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-primary">
-                {t("hero.badge") || "Enterprise Queue Management"}
-              </span>
-            </motion.div>
-
-            {/* Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
-            >
-              {t("hero.title")}
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0"
-            >
-              {t("hero.subtitle")}
-            </motion.p>
-
-            {/* Feature List */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8"
-            >
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{feature.text}</span>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <Button variant="hero" size="xl" className="group shadow-elegant">
-                {t("hero.cta")}
-                <motion.div
-                  className={isRTL ? 'mr-2' : 'ml-2'}
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </motion.div>
-              </Button>
-              <Button variant="outline" size="xl" className="group">
-                <Play className="w-5 h-5" />
-                {t("hero.watchDemo") || "Watch Demo"}
-              </Button>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-10 pt-8 border-t border-border/50"
-            >
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8">
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-foreground">500+</p>
-                  <p className="text-xs text-muted-foreground">{t("hero.stat1") || "Active Clients"}</p>
-                </div>
-                <div className="w-px h-10 bg-border hidden sm:block" />
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-foreground">2M+</p>
-                  <p className="text-xs text-muted-foreground">{t("hero.stat2") || "Tickets Processed"}</p>
-                </div>
-                <div className="w-px h-10 bg-border hidden sm:block" />
-                <div className="text-center">
-                  <p className="text-2xl font-bold text-foreground">99.9%</p>
-                  <p className="text-xs text-muted-foreground">{t("hero.stat3") || "Uptime"}</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column: Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
-            {/* Image Container with Shadow */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-2xl transform rotate-2" />
-              <div className="relative bg-card border border-border/50 rounded-2xl overflow-hidden shadow-card">
+    return (
+        <section className="relative min-h-screen flex items-center bg-dark overflow-hidden">
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0">
                 <img
-                  src={heroImage}
-                  alt="Queue management and reservation platform interface"
-                  className="w-full h-auto"
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                    alt="Creative workspace with design materials"
+                    className="w-full h-full object-cover opacity-40 grayscale"
                 />
-              </div>
-              
-              {/* Floating Stats Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute -bottom-6 -left-6 bg-card border border-border rounded-xl p-4 shadow-card"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">Live Processing</p>
-                    <p className="text-xs text-muted-foreground">847 customers in queue</p>
-                  </div>
-                </div>
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-dark/40" />
             </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
-export default Hero;
+            {/* Content */}
+            <div ref={ref} className="relative z-10 container-custom py-20">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    {/* Left Content */}
+                    <div className="pt-10 lg:pt-20 text-center lg:text-left">
+                        <div className={`${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+                            <p className="text-accent text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase mb-6 md:mb-8">
+                                ● {t("hero.subtitle")}
+                            </p>
+                        </div>
+
+                        <h1
+                            className={`text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-display text-light leading-[1.05] mb-8 md:mb-10 ${
+                                isVisible ? "animate-fade-up delay-100" : "opacity-0"
+                            }`}
+                        >
+                            {t("hero.title1")}<br />
+                            {t("hero.title2")}
+                        </h1>
+
+                        <div className={`${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
+                            <button
+                                onClick={scrollToContact}
+                                className="border border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-8 md:px-10 py-3 md:py-4 text-[11px] md:text-xs tracking-[0.15em] uppercase transition-all duration-300 bg-transparent"
+                            >
+                                {t("hero.button")}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Right Content - Scroll Down Indicator */}
+                    <div
+                        className={`hidden lg:flex justify-center lg:justify-end items-center min-h-[200px] md:min-h-[300px] ${
+                            isVisible ? "animate-fade-up delay-300" : "opacity-0"
+                        }`}
+                    >
+                        <button
+                            onClick={scrollToAbout}
+                            className="group relative w-32 h-32 md:w-40 md:h-40"
+                        >
+                            {/* Rotating Text Circle */}
+                            <div className="absolute inset-0 animate-spin-slow">
+                                <svg viewBox="0 0 100 100" className="w-full h-full">
+                                    <defs>
+                                        <path
+                                            id="circlePath"
+                                            d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                                        />
+                                    </defs>
+                                    <text className="text-[7px] fill-light/70 uppercase tracking-[0.25em]">
+                                        <textPath href="#circlePath">
+                                            {t("hero.circleText")}
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </div>
+                            {/* Center Scroll Down Button */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 bg-accent border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
+                                    <span className="text-accent-foreground font-display text-4xl font-bold">A</span>
+                                </div>
+                            </div>
+                        </button>
+                    </div>      
+                </div>
+            </div>
+        </section>
+    );
+};

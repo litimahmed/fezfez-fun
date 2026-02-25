@@ -1,24 +1,10 @@
 {
-  "_comment": "This is the base TypeScript configuration file for the project. It sets up project references and common compiler options.",
   "files": [],
-  "references": [
-    {
-      "_comment": "This references the tsconfig.app.json file, which contains the TypeScript configuration for the application code.",
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "_comment": "This references the tsconfig.node.json file, which contains the TypeScript configuration for Node.js-specific files like vite.config.ts.",
-      "path": "./tsconfig.node.json"
-    }
-  ],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
   "compilerOptions": {
-    "_comment": "These are the common compiler options that apply to all TypeScript files in the project.",
     "baseUrl": ".",
     "paths": {
-      "_comment": "This allows for absolute imports from the 'src' directory using the '@/' alias.",
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,
